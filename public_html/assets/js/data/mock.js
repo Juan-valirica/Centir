@@ -79,6 +79,43 @@ Centir.data = {
     { id: 4, nombre: 'Sala Virtual',  tipo: 'virtual' },
   ],
 
+  /* ── Pacientes ──────────────────────────────────────────── */
+  pacientes: [
+    // Ana María Rodríguez (psicologaId: 1)
+    { id: 1,  nombre: 'Carlos Mendoza',      telefono: '3001110001', email: 'carlos.m@email.com',    categoria: 'centir',   psicologaId: 1, fechaIngreso: '2025-06-15', notas: '' },
+    { id: 2,  nombre: 'María López García',  telefono: '3001110002', email: 'maria.l@email.com',     categoria: 'centir',   psicologaId: 1, fechaIngreso: '2025-04-20', notas: '' },
+    { id: 3,  nombre: 'Juan Hernández',      telefono: '3001110003', email: 'juan.h@email.com',      categoria: 'referido', psicologaId: 1, fechaIngreso: '2025-10-05', notas: '' },
+    { id: 4,  nombre: 'Rosa Elena Gómez',    telefono: '3001110004', email: 'rosa.g@email.com',      categoria: 'privado',  psicologaId: 1, fechaIngreso: '2025-12-01', notas: '' },
+    { id: 5,  nombre: 'Patricia Sánchez',    telefono: '3001110005', email: 'patricia.s@email.com',  categoria: 'referido', psicologaId: 1, fechaIngreso: '2026-02-10', notas: '' },
+    { id: 6,  nombre: 'Alejandro Torres',    telefono: '3001110006', email: 'alej.t@email.com',      categoria: 'privado',  psicologaId: 1, fechaIngreso: '2025-08-22', notas: '' },
+    { id: 7,  nombre: 'Claudia Jiménez',     telefono: '3001110007', email: 'claudia.j@email.com',   categoria: 'centir',   psicologaId: 1, fechaIngreso: '2025-11-30', notas: '' },
+    // Paula Valentina Restrepo (psicologaId: 2)
+    { id: 8,  nombre: 'Diego Ramírez',       telefono: '3002220001', email: 'diego.r@email.com',     categoria: 'centir',   psicologaId: 2, fechaIngreso: '2025-09-01', notas: '' },
+    { id: 9,  nombre: 'Sofía Ruiz Mora',     telefono: '3002220002', email: 'sofia.rm@email.com',    categoria: 'centir',   psicologaId: 2, fechaIngreso: '2025-07-15', notas: '' },
+    { id: 10, nombre: 'Luis Felipe Castro',  telefono: '3002220003', email: 'lf.castro@email.com',   categoria: 'privado',  psicologaId: 2, fechaIngreso: '2025-05-20', notas: '' },
+    { id: 11, nombre: 'Natalia Vargas',      telefono: '3002220004', email: 'natalia.v@email.com',   categoria: 'referido', psicologaId: 2, fechaIngreso: '2025-11-10', notas: '' },
+    { id: 12, nombre: 'Valentina Cruz',      telefono: '3002220005', email: 'valen.c@email.com',     categoria: 'privado',  psicologaId: 2, fechaIngreso: '2025-12-05', notas: '' },
+    { id: 13, nombre: 'Mario Peñaloza',      telefono: '3002220006', email: 'mario.p@email.com',     categoria: 'centir',   psicologaId: 2, fechaIngreso: '2026-01-20', notas: '' },
+    // Carla Sofía Vargas (psicologaId: 3)
+    { id: 14, nombre: 'Tomás Herrera',       telefono: '3003330001', email: 'tomas.h@email.com',     categoria: 'centir',   psicologaId: 3, fechaIngreso: '2025-03-10', notas: '' },
+    { id: 15, nombre: 'Isabella Moreno',     telefono: '3003330002', email: 'isa.m@email.com',       categoria: 'centir',   psicologaId: 3, fechaIngreso: '2025-01-15', notas: '' },
+    { id: 16, nombre: 'Sebastián Díaz',      telefono: '3003330003', email: 'seba.d@email.com',      categoria: 'referido', psicologaId: 3, fechaIngreso: '2025-06-01', notas: '' },
+    { id: 17, nombre: 'Valeria Ospina',      telefono: '3003330004', email: 'vale.o@email.com',      categoria: 'privado',  psicologaId: 3, fechaIngreso: '2025-10-20', notas: '' },
+    { id: 18, nombre: 'Mariana Lozano',      telefono: '3003330005', email: 'mariana.l@email.com',   categoria: 'privado',  psicologaId: 3, fechaIngreso: '2025-08-05', notas: '' },
+    { id: 19, nombre: 'Felipe Arango',       telefono: '3003330006', email: 'felipe.a@email.com',    categoria: 'centir',   psicologaId: 3, fechaIngreso: '2025-12-15', notas: '' },
+    // Daniela Martínez López (psicologaId: 4)
+    { id: 20, nombre: 'Ricardo Salcedo',     telefono: '3004440001', email: 'ricardo.s@email.com',   categoria: 'privado',  psicologaId: 4, fechaIngreso: '2024-10-01', notas: '' },
+    { id: 21, nombre: 'Ana Isabel Benítez',  telefono: '3004440002', email: 'anaisa.b@email.com',    categoria: 'centir',   psicologaId: 4, fechaIngreso: '2025-05-10', notas: '' },
+    { id: 22, nombre: 'Santiago Mora',       telefono: '3004440003', email: 'santi.m@email.com',     categoria: 'referido', psicologaId: 4, fechaIngreso: '2025-08-20', notas: '' },
+    { id: 23, nombre: 'Elena Ponce',         telefono: '3004440004', email: 'elena.p@email.com',     categoria: 'centir',   psicologaId: 4, fechaIngreso: '2025-11-05', notas: '' },
+    // Lucía Fernández Ruiz (psicologaId: 5)
+    { id: 24, nombre: 'Gabriela Ríos',       telefono: '3005550001', email: 'gabi.r@email.com',      categoria: 'centir',   psicologaId: 5, fechaIngreso: '2026-01-05', notas: '' },
+    { id: 25, nombre: 'Andrés Mejía',        telefono: '3005550002', email: 'andres.m@email.com',    categoria: 'privado',  psicologaId: 5, fechaIngreso: '2025-09-15', notas: '' },
+    { id: 26, nombre: 'Cristina Velásquez',  telefono: '3005550003', email: 'cris.v@email.com',      categoria: 'referido', psicologaId: 5, fechaIngreso: '2025-07-20', notas: '' },
+    { id: 27, nombre: 'Héctor Quintero',     telefono: '3005550004', email: 'hector.q@email.com',    categoria: 'centir',   psicologaId: 5, fechaIngreso: '2025-12-10', notas: '' },
+    { id: 28, nombre: 'Laura Montoya',       telefono: '3005550005', email: 'laura.mo@email.com',    categoria: 'privado',  psicologaId: 5, fechaIngreso: '2025-10-25', notas: '' },
+  ],
+
   /* ── Consultas (febrero 2026) ───────────────────────────── */
   consultas: [
     // ── Ana María Rodríguez (id: 1) ─────────────────────────
@@ -153,6 +190,23 @@ Centir.data = {
     { id: 61, psicologaId: 5, paciente: 'Laura Montoya',            categoria: 'privado',  modalidad: 'presencial', fecha: '2026-02-23', hora: '09:00', valor: 280000, consultorio: 'Consultorio 3', sesionNumero: 2 },
     { id: 62, psicologaId: 5, paciente: 'Cristina Velásquez',       categoria: 'referido', modalidad: 'virtual',    fecha: '2026-02-24', hora: '10:00', valor: 200000, consultorio: 'Sala Virtual',  sesionNumero: 5 },
     { id: 63, psicologaId: 5, paciente: 'Gabriela Ríos (Eval.)',    categoria: 'centir',   modalidad: 'presencial', fecha: '2026-02-25', hora: '08:00', valor: 120000, consultorio: 'Consultorio 3', sesionNumero: 3 },
+
+    // ── Citas de hoy 2026-02-26 ──────────────────────────────
+    { id: 64, psicologaId: 1, paciente: 'Carlos Mendoza',      categoria: 'centir',   modalidad: 'presencial', fecha: '2026-02-26', hora: '09:00', valor: 120000, consultorio: 'Consultorio 1', sesionNumero: 10 },
+    { id: 65, psicologaId: 1, paciente: 'Rosa Elena Gómez',    categoria: 'privado',  modalidad: 'presencial', fecha: '2026-02-26', hora: '11:00', valor: 180000, consultorio: 'Consultorio 1', sesionNumero: 4  },
+    { id: 66, psicologaId: 1, paciente: 'Patricia Sánchez',    categoria: 'referido', modalidad: 'virtual',    fecha: '2026-02-26', hora: '14:00', valor: 150000, consultorio: 'Sala Virtual',  sesionNumero: 3  },
+    { id: 67, psicologaId: 2, paciente: 'Diego Ramírez',       categoria: 'centir',   modalidad: 'presencial', fecha: '2026-02-26', hora: '08:00', valor: 120000, consultorio: 'Consultorio 2', sesionNumero: 8  },
+    { id: 68, psicologaId: 2, paciente: 'Valentina Cruz',      categoria: 'privado',  modalidad: 'presencial', fecha: '2026-02-26', hora: '10:00', valor: 200000, consultorio: 'Consultorio 2', sesionNumero: 5  },
+    { id: 69, psicologaId: 3, paciente: 'Isabella Moreno (8)', categoria: 'centir',   modalidad: 'presencial', fecha: '2026-02-26', hora: '15:00', valor: 120000, consultorio: 'Consultorio 3', sesionNumero: 23 },
+    { id: 70, psicologaId: 4, paciente: 'Ricardo Salcedo',     categoria: 'privado',  modalidad: 'presencial', fecha: '2026-02-26', hora: '11:00', valor: 220000, consultorio: 'Consultorio 1', sesionNumero: 27 },
+    { id: 71, psicologaId: 5, paciente: 'Laura Montoya',       categoria: 'privado',  modalidad: 'presencial', fecha: '2026-02-26', hora: '09:00', valor: 280000, consultorio: 'Consultorio 3', sesionNumero: 3  },
+
+    // ── Próximas citas (marzo 2026) ──────────────────────────
+    { id: 72, psicologaId: 1, paciente: 'Carlos Mendoza',      categoria: 'centir',   modalidad: 'presencial', fecha: '2026-03-02', hora: '09:00', valor: 120000, consultorio: 'Consultorio 1', sesionNumero: 11 },
+    { id: 73, psicologaId: 1, paciente: 'María López García',  categoria: 'centir',   modalidad: 'presencial', fecha: '2026-03-03', hora: '10:00', valor: 120000, consultorio: 'Consultorio 1', sesionNumero: 14 },
+    { id: 74, psicologaId: 1, paciente: 'Juan Hernández',      categoria: 'referido', modalidad: 'virtual',    fecha: '2026-03-05', hora: '11:00', valor: 150000, consultorio: 'Sala Virtual',  sesionNumero: 6  },
+    { id: 75, psicologaId: 1, paciente: 'Alejandro Torres',    categoria: 'privado',  modalidad: 'presencial', fecha: '2026-03-05', hora: '09:00', valor: 180000, consultorio: 'Consultorio 1', sesionNumero: 7  },
+    { id: 76, psicologaId: 1, paciente: 'Claudia Jiménez',     categoria: 'centir',   modalidad: 'presencial', fecha: '2026-03-09', hora: '09:00', valor: 120000, consultorio: 'Consultorio 1', sesionNumero: 4  },
   ],
 
   /* ── Helpers ────────────────────────────────────────────── */
@@ -188,5 +242,57 @@ Centir.data = {
     const totalFacturado = this.consultas.reduce((t, c) => t + c.valor, 0);
     const totalConsultas = this.consultas.length;
     return { totalPacientes, totalFacturado, totalConsultas };
+  },
+
+  // ── Helpers para el Dashboard de Psicólogas ─────────────
+
+  getPacientesDePsicologa(psicologaId) {
+    return this.pacientes.filter(p => p.psicologaId === psicologaId);
+  },
+
+  getConsultasHoy(psicologaId) {
+    const hoy = Centir.config.today();
+    return this.consultas
+      .filter(c => c.psicologaId === psicologaId && c.fecha === hoy)
+      .sort((a, b) => a.hora.localeCompare(b.hora));
+  },
+
+  getProximasCitas(psicologaId, limite = 5) {
+    const hoy = Centir.config.today();
+    return this.consultas
+      .filter(c => c.psicologaId === psicologaId && c.fecha > hoy)
+      .sort((a, b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora))
+      .slice(0, limite);
+  },
+
+  getConsultoriosDisponibles(fecha, hora) {
+    const ocupados = this.consultas
+      .filter(c => c.fecha === fecha && c.hora === hora && c.modalidad === 'presencial')
+      .map(c => c.consultorio);
+    return this.consultorios
+      .filter(c => c.tipo === 'presencial')
+      .map(c => ({
+        ...c,
+        disponible: !ocupados.includes(c.nombre),
+        ocupadoPor: ocupados.includes(c.nombre)
+          ? (this.consultas.find(co => co.fecha === fecha && co.hora === hora && co.consultorio === c.nombre)?.paciente || null)
+          : null,
+      }));
+  },
+
+  createPaciente(data) {
+    const newId = Math.max(...this.pacientes.map(p => p.id)) + 1;
+    const paciente = { id: newId, ...data, fechaIngreso: Centir.config.today() };
+    this.pacientes.push(paciente);
+    return paciente;
+  },
+
+  createConsulta(data) {
+    const newId = Math.max(...this.consultas.map(c => c.id)) + 1;
+    const sesionNumero = this.consultas
+      .filter(c => c.psicologaId === data.psicologaId && c.paciente === data.paciente).length + 1;
+    const consulta = { id: newId, sesionNumero, ...data };
+    this.consultas.push(consulta);
+    return consulta;
   },
 };

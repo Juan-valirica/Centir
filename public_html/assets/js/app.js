@@ -31,6 +31,7 @@ Centir.app = {
     switch (view) {
       case 'dashboard':
         document.getElementById('view-dashboard').classList.add('active');
+        this._setHeader('Dashboard', 'Inicio');
         Centir.viewDashboard.render();
         break;
 
@@ -41,21 +42,32 @@ Centir.app = {
 
       case 'horario':
         document.getElementById('view-horario').classList.add('active');
-        document.querySelector('[data-view="horario"]')?.classList.add('active');
-        document.querySelectorAll('.nav-item').forEach(item => {
-          item.classList.toggle('active', item.dataset.view === 'horario');
-        });
+        this._setHeader('Horario', 'Febrero 2026');
         Centir.viewHorario.render();
+        break;
+
+      case 'psicologa':
+        document.getElementById('view-psicologa').classList.add('active');
+        Centir.viewPsicologa.render();
         break;
 
       default:
         document.getElementById('view-dashboard').classList.add('active');
+        this._setHeader('Dashboard', 'Inicio');
         Centir.viewDashboard.render();
     }
 
     // Scroll al top del área de contenido
     const contentArea = document.querySelector('.content-area');
     if (contentArea) contentArea.scrollTop = 0;
+  },
+
+  // ── Actualizar título del header ─────────────────────────────
+  _setHeader(title, breadcrumb) {
+    const titleEl = document.querySelector('.header-page-title');
+    const breadEl = document.querySelector('.header-breadcrumb');
+    if (titleEl) titleEl.textContent = title;
+    if (breadEl) breadEl.innerHTML   = breadcrumb ? `<span>${breadcrumb}</span>` : '';
   },
 
   // ── Sidebar navigation ──────────────────────────────────────
