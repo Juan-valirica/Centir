@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none">
+  <!-- Marca abstracta: dos círculos superpuestos = mente + conexión -->
+  <circle cx="22" cy="26" r="17" fill="#9cc3c0"/>
+  <circle cx="36" cy="26" r="17" fill="#9787a3" opacity="0.75"/>
+  <!-- Texto principal -->
+  <text x="60" y="32" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#2c2c3d" letter-spacing="-0.5">centir</text>
+  <!-- Subtítulo -->
+  <text x="61" y="45" font-family="Inter, -apple-system, sans-serif" font-size="8.5" font-weight="500" fill="#9e9eaf" letter-spacing="1.5">CENTRO DE PSICOLOGÍA</text>
+</svg>

@@ -1,0 +1,165 @@
+/* ============================================================
+   BASE.CSS — Variables, Reset, Tipografía
+   Centir · Centro de Psicología · Dashboard
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ── Colores de marca ───────────────────────────────────── */
+  --primary:          #9cc3c0;
+  --primary-light:    #c5dedd;
+  --primary-lighter:  #eef6f5;
+  --primary-dark:     #7aaba8;
+  --primary-darker:   #5a8a87;
+
+  --secondary:        #9787a3;
+  --secondary-light:  #c4b9d2;
+  --secondary-lighter:#f0edf5;
+  --secondary-dark:   #7a6b8a;
+  --secondary-darker: #5e5270;
+
+  /* ── Colores complementarios (psicólogas) ───────────────── */
+  --accent-rose:      #c4a0b8;
+  --accent-rose-light:#f0e4ec;
+  --accent-sage:      #a0c4b0;
+  --accent-sage-light:#e4f0ea;
+  --accent-gold:      #c4b870;
+  --accent-gold-light:#f0ecd4;
+
+  /* ── Neutros ─────────────────────────────────────────────── */
+  --bg:               #f7f5fa;
+  --bg-alt:           #f0edf5;
+  --surface:          #ffffff;
+  --surface-alt:      #faf9fc;
+  --border:           #e6e1ed;
+  --border-light:     #f0ecf6;
+
+  /* ── Texto ───────────────────────────────────────────────── */
+  --text:             #2c2c3d;
+  --text-medium:      #6e6e85;
+  --text-light:       #9e9eaf;
+  --text-inverse:     #ffffff;
+
+  /* ── Tags de categoría ───────────────────────────────────── */
+  --tag-centir-bg:        #d4eae9;
+  --tag-centir-text:      #3d8784;
+  --tag-referido-bg:      #ddd6e8;
+  --tag-referido-text:    #6b5d7a;
+  --tag-privado-bg:       #f5d6dc;
+  --tag-privado-text:     #9c4a58;
+
+  /* ── Tags de modalidad ───────────────────────────────────── */
+  --tag-presencial-bg:    #d4e8d2;
+  --tag-presencial-text:  #3d7a3a;
+  --tag-virtual-bg:       #d2dfe8;
+  --tag-virtual-text:     #3a5f7a;
+
+  /* ── Utilidades ──────────────────────────────────────────── */
+  --success:          #6dbf7e;
+  --success-light:    #d4f0db;
+  --warning:          #f0c080;
+  --warning-light:    #fdf0d4;
+  --danger:           #f08080;
+  --danger-light:     #fdd4d4;
+
+  /* ── Espaciado ───────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+
+  /* ── Bordes ──────────────────────────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+  /* ── Sombras ─────────────────────────────────────────────── */
+  --shadow-xs:  0 1px 2px rgba(44, 44, 61, 0.04);
+  --shadow-sm:  0 2px 6px rgba(151, 135, 163, 0.08);
+  --shadow-md:  0 4px 14px rgba(151, 135, 163, 0.12);
+  --shadow-lg:  0 8px 28px rgba(151, 135, 163, 0.16);
+  --shadow-xl:  0 16px 48px rgba(151, 135, 163, 0.20);
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --sidebar-width:   264px;
+  --header-height:   72px;
+
+  /* ── Transiciones ────────────────────────────────────────── */
+  --ease:        all 0.2s ease;
+  --ease-slow:   all 0.35s ease;
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; font-size: inherit; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+ul, ol { list-style: none; }
+hr { border: none; border-top: 1px solid var(--border); }
+
+/* ── Tipografía ──────────────────────────────────────────────── */
+h1 { font-size: 1.875rem; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 1.5rem;   font-weight: 700; line-height: 1.25; }
+h3 { font-size: 1.25rem;  font-weight: 600; line-height: 1.3; }
+h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+h5 { font-size: 1rem;     font-weight: 600; line-height: 1.4; }
+h6 { font-size: 0.875rem; font-weight: 600; line-height: 1.45; }
+
+/* ── Clases utilitarias ──────────────────────────────────────── */
+.text-xs    { font-size: 0.6875rem; }
+.text-sm    { font-size: 0.8125rem; }
+.text-base  { font-size: 1rem; }
+.text-lg    { font-size: 1.125rem; }
+.text-xl    { font-size: 1.25rem; }
+
+.text-muted     { color: var(--text-medium); }
+.text-lighter   { color: var(--text-light); }
+.text-primary   { color: var(--primary-dark); }
+.text-secondary { color: var(--secondary-dark); }
+
+.font-normal  { font-weight: 400; }
+.font-medium  { font-weight: 500; }
+.font-semibold{ font-weight: 600; }
+.font-bold    { font-weight: 700; }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Scrollbar personalizado ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--secondary-light); }
