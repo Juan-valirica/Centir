@@ -13,6 +13,32 @@ Centir.app = {
   init() {
     this._setCurrentDate();
     this._bindSidebarNav();
+    this._navigateFromSession();
+  },
+
+  // ── Detectar rol desde sessionStorage o URL ──────────────────
+  _navigateFromSession() {
+    // Leer parámetro ?vista= de la URL
+    const params = new URLSearchParams(window.location.search);
+    const vistaParam = params.get('vista');
+
+    if (vistaParam === 'psicologa') {
+      // Leer psicóloga seleccionada
+      const psicologaId = parseInt(sessionStorage.getItem('centir_psicologa_id')) || 1;
+      Centir.viewPsicologa._psicologaId = psicologaId;
+      this.navigate('psicologa');
+      return;
+    }
+
+    // Si ya había una sesión de psicóloga guardada, restaurarla
+    const role = sessionStorage.getItem('centir_role');
+    if (role === 'psicologa') {
+      const psicologaId = parseInt(sessionStorage.getItem('centir_psicologa_id')) || 1;
+      Centir.viewPsicologa._psicologaId = psicologaId;
+      this.navigate('psicologa');
+      return;
+    }
+
     this.navigate('dashboard');
   },
 

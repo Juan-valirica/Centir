@@ -148,6 +148,17 @@
 
     .form-input::placeholder { color: var(--text-light); }
 
+    select.form-input {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239e9eaf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
     .form-input-icon {
       position: absolute;
       left: 14px;
@@ -231,8 +242,91 @@
 
     .demo-hint strong { font-weight: 700; }
 
-    /* Footer */
-    .login-footer {
+    /* Selector de rol */
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .role-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 10px;
+      border-radius: 14px;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .role-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-lighter);
+    }
+
+    .role-btn.active {
+      border-color: var(--secondary-dark);
+      background: var(--secondary-lighter);
+      box-shadow: 0 0 0 3px rgba(151, 135, 163, 0.15);
+    }
+
+    .role-btn-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      box-shadow: 0 2px 8px rgba(151, 135, 163, 0.15);
+    }
+
+    .role-btn.active .role-btn-icon {
+      background: linear-gradient(135deg, var(--secondary-lighter), white);
+    }
+
+    .role-btn-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--text-medium); fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .role-btn.active .role-btn-icon svg {
+      stroke: var(--secondary-dark);
+    }
+
+    .role-btn-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-medium);
+    }
+
+    .role-btn.active .role-btn-label {
+      color: var(--secondary-dark);
+    }
+
+    .role-btn-sub {
+      font-size: 0.6875rem;
+      color: var(--text-light);
+    }
+
+    .role-btn.active .role-btn-sub {
+      color: var(--secondary);
+    }
+
+    /* Selector de psicóloga */
+    .psicologa-select-wrap {
+      margin-bottom: 18px;
+      display: none;
+    }
+
+    .psicologa-select-wrap.visible {
+      display: block;
+    }
       margin-top: 24px;
       text-align: center;
       font-size: 0.75rem;
@@ -276,11 +370,54 @@
       <!-- Logo -->
       <img class="login-logo" src="../assets/img/logo.svg" alt="Centir" />
 
-      <h1 class="login-title">Bienvenida</h1>
-      <p class="login-subtitle">Ingresa tus credenciales para acceder al panel</p>
+      <h1 class="login-title" id="login-title">Bienvenida</h1>
+      <p class="login-subtitle" id="login-subtitle">Ingresa tus credenciales para acceder al panel</p>
+
+      <!-- Selector de rol -->
+      <div class="role-selector">
+        <button type="button" class="role-btn" id="role-admin" onclick="selectRole('admin')">
+          <div class="role-btn-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <span class="role-btn-label">Administrador</span>
+          <span class="role-btn-sub">Acceso completo</span>
+        </button>
+        <button type="button" class="role-btn active" id="role-psicologa" onclick="selectRole('psicologa')">
+          <div class="role-btn-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="role-btn-label">Psicóloga</span>
+          <span class="role-btn-sub">Mi agenda</span>
+        </button>
+      </div>
 
       <!-- Formulario -->
       <form onsubmit="handleLogin(event)">
+
+        <!-- Selector de psicóloga (solo visible en rol psicóloga) -->
+        <div class="psicologa-select-wrap visible" id="psicologa-select-wrap">
+          <label class="form-label">¿Quién eres?</label>
+          <div class="form-input-wrapper">
+            <div class="form-input-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <select id="psicologa-id" class="form-input">
+              <option value="1">Ana María Rodríguez — Psicología Clínica</option>
+              <option value="2">Paula Valentina Restrepo — Neuropsicología</option>
+              <option value="3">Carla Sofía Vargas — Psicología Infantil</option>
+              <option value="4">Daniela Martínez López — Psicoterapia</option>
+              <option value="5">Lucía Fernández Ruiz — Terapia de Pareja</option>
+            </select>
+          </div>
+        </div>
 
         <div class="form-group">
           <label class="form-label" for="email">Correo electrónico</label>
@@ -330,13 +467,15 @@
           <a href="#" class="form-link">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" class="btn-login">Ingresar al panel</button>
+        <button type="submit" class="btn-login">
+          <span id="btn-login-text">Entrar a Mi Agenda</span>
+        </button>
 
       </form>
 
       <!-- Hint de demo -->
       <div class="demo-hint">
-        <strong>Modo demo:</strong> Usa cualquier correo/contraseña o haz clic en "Ingresar al panel" directamente.
+        <strong>Modo demo:</strong> Selecciona tu rol arriba y haz clic en "Ingresar" directamente. No se validan credenciales.
       </div>
 
       <div class="login-footer">
@@ -347,11 +486,47 @@
   </div>
 
   <script>
+    let currentRole = 'psicologa';
+
+    function selectRole(role) {
+      currentRole = role;
+      document.getElementById('role-admin').classList.toggle('active',    role === 'admin');
+      document.getElementById('role-psicologa').classList.toggle('active', role === 'psicologa');
+
+      const psiSelect = document.getElementById('psicologa-select-wrap');
+      psiSelect.classList.toggle('visible', role === 'psicologa');
+
+      const title    = document.getElementById('login-title');
+      const subtitle = document.getElementById('login-subtitle');
+      const btnText  = document.getElementById('btn-login-text');
+
+      if (role === 'psicologa') {
+        title.textContent    = 'Hola, bienvenida';
+        subtitle.textContent = 'Accede a tu agenda y gestiona tus citas';
+        btnText.textContent  = 'Entrar a Mi Agenda';
+      } else {
+        title.textContent    = 'Panel de Administración';
+        subtitle.textContent = 'Ingresa tus credenciales para acceder';
+        btnText.textContent  = 'Ingresar al panel';
+      }
+    }
+
     function handleLogin(e) {
       e.preventDefault();
-      // En producción aquí iría la validación real con el backend
-      window.location.href = '../dashboard.html';
+      if (currentRole === 'psicologa') {
+        const psicologaId = document.getElementById('psicologa-id').value;
+        // Guardamos en sessionStorage para que app.js pueda leerlo
+        sessionStorage.setItem('centir_role', 'psicologa');
+        sessionStorage.setItem('centir_psicologa_id', psicologaId);
+        window.location.href = '../dashboard.html?vista=psicologa';
+      } else {
+        sessionStorage.setItem('centir_role', 'admin');
+        window.location.href = '../dashboard.html';
+      }
     }
+
+    // Inicializar con rol psicóloga por defecto
+    selectRole('psicologa');
   </script>
 
 </body>
