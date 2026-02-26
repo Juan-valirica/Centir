@@ -15,6 +15,10 @@ Centir.viewPsicologa = {
   _selectedDuracion:    '60',
   _selectedConsultorio: null,
 
+  // Estado interno del modal de reserva de consultorio
+  _selectedConsultorioReserva: null,
+  _selectedDuracionReserva:    '60',
+
   // ── Render principal ─────────────────────────────────────────
   render() {
     const container = document.getElementById('view-psicologa');
@@ -85,6 +89,16 @@ Centir.viewPsicologa = {
             <line x1="10" y1="16" x2="14" y2="16"/>
           </svg>
           Agendar Cita
+        </button>
+        <button class="btn btn-outline psi-action-btn"
+                onclick="Centir.viewPsicologa.openModalConsultorio()">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="1"/>
+            <path d="M8 21h8M12 17v4"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+            <line x1="12" y1="7" x2="12" y2="11"/>
+          </svg>
+          Reservar Consultorio
         </button>
       </div>
 
@@ -223,7 +237,7 @@ Centir.viewPsicologa = {
     document.querySelectorAll('.psi-modal-overlay').forEach(m => m.remove());
 
     const wrapper = document.createElement('div');
-    wrapper.innerHTML = this._renderModalPaciente() + this._renderModalCita(pacientes);
+    wrapper.innerHTML = this._renderModalPaciente() + this._renderModalCita(pacientes) + this._renderModalConsultorio();
     document.body.appendChild(wrapper);
 
     this._bindModalEvents();
@@ -752,6 +766,213 @@ Centir.viewPsicologa = {
     }, 3500);
   },
 
+  // ════════════════════════════════════════════════════════════
+  // MODAL — RESERVAR CONSULTORIO
+  // ════════════════════════════════════════════════════════════
+  _renderModalConsultorio() {
+    const horasOptions = this._generarHoras();
+    return `
+    <div class="psi-modal-overlay" id="modal-consultorio" style="display:none">
+      <div class="psi-modal psi-modal--large">
+
+        <div class="psi-modal-header">
+          <h3>Reservar Consultorio</h3>
+          <button class="psi-modal-close" onclick="Centir.viewPsicologa.closeModalConsultorio()">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="psi-modal-body">
+
+          <!-- Fecha y Hora -->
+          <div class="psi-form-row">
+            <div class="psi-form-group">
+              <label class="psi-form-label">Fecha <span class="psi-required">*</span></label>
+              <input type="date" id="res-fecha" class="psi-form-input"
+                     min="${Centir.config.today()}" value="${Centir.config.today()}"
+                     onchange="Centir.viewPsicologa._onResDateChange()" />
+            </div>
+            <div class="psi-form-group">
+              <label class="psi-form-label">Hora <span class="psi-required">*</span></label>
+              <select id="res-hora" class="psi-form-input"
+                      onchange="Centir.viewPsicologa._onResDateChange()">
+                ${horasOptions}
+              </select>
+            </div>
+          </div>
+
+          <!-- Duración -->
+          <div class="psi-form-group">
+            <label class="psi-form-label">Duración del bloque</label>
+            <div class="psi-duracion-selector">
+              <button class="psi-dur-btn res-dur-btn" data-dur="45"
+                      onclick="Centir.viewPsicologa._selectDuracionReserva('45')">45 min</button>
+              <button class="psi-dur-btn res-dur-btn active" data-dur="60"
+                      onclick="Centir.viewPsicologa._selectDuracionReserva('60')">60 min</button>
+              <button class="psi-dur-btn res-dur-btn" data-dur="90"
+                      onclick="Centir.viewPsicologa._selectDuracionReserva('90')">90 min</button>
+            </div>
+          </div>
+
+          <!-- Selección de consultorio -->
+          <div class="psi-form-group">
+            <label class="psi-form-label">
+              Seleccionar Consultorio <span class="psi-required">*</span>
+            </label>
+            <div class="psi-office-grid" id="psi-res-office-grid">
+              <!-- cargado dinámicamente -->
+            </div>
+            <input type="hidden" id="res-consultorio" />
+          </div>
+
+          <!-- Motivo -->
+          <div class="psi-form-group">
+            <label class="psi-form-label">Motivo de la reserva</label>
+            <input type="text" id="res-motivo" class="psi-form-input"
+                   placeholder="Ej: Preparación de sesión, supervisión, reunión..." />
+          </div>
+
+          <div id="res-error" class="psi-form-error" style="display:none"></div>
+
+        </div>
+
+        <div class="psi-modal-footer">
+          <button class="btn btn-outline" onclick="Centir.viewPsicologa.closeModalConsultorio()">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" onclick="Centir.viewPsicologa._submitConsultorio()">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="1"/>
+              <path d="M8 21h8M12 17v4"/>
+              <polyline points="9 9 12 6 15 9"/>
+            </svg>
+            Confirmar Reserva
+          </button>
+        </div>
+
+      </div>
+    </div>`;
+  },
+
+  openModalConsultorio() {
+    const modal = document.getElementById('modal-consultorio');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    // Reset
+    document.getElementById('res-fecha').value      = Centir.config.today();
+    document.getElementById('res-motivo').value     = '';
+    document.getElementById('res-consultorio').value = '';
+    document.getElementById('res-error').style.display = 'none';
+    this._selectedConsultorioReserva = null;
+    this._selectedDuracionReserva    = '60';
+    document.querySelectorAll('.res-dur-btn').forEach(b => b.classList.toggle('active', b.dataset.dur === '60'));
+    this._loadConsultoriosReserva();
+  },
+
+  closeModalConsultorio() {
+    const modal = document.getElementById('modal-consultorio');
+    if (modal) modal.style.display = 'none';
+    document.body.style.overflow = '';
+  },
+
+  _selectDuracionReserva(dur) {
+    this._selectedDuracionReserva = dur;
+    document.querySelectorAll('.res-dur-btn').forEach(b => b.classList.toggle('active', b.dataset.dur === dur));
+  },
+
+  _onResDateChange() {
+    this._selectedConsultorioReserva = null;
+    document.getElementById('res-consultorio').value = '';
+    this._loadConsultoriosReserva();
+  },
+
+  _selectConsultorioReserva(nombre) {
+    this._selectedConsultorioReserva = nombre;
+    document.getElementById('res-consultorio').value = nombre;
+    this._loadConsultoriosReserva();
+  },
+
+  _loadConsultoriosReserva() {
+    const grid    = document.getElementById('psi-res-office-grid');
+    const fechaEl = document.getElementById('res-fecha');
+    const horaEl  = document.getElementById('res-hora');
+    if (!grid || !fechaEl || !horaEl) return;
+
+    const fecha = fechaEl.value;
+    const hora  = horaEl.value;
+    if (!fecha || !hora) return;
+
+    const consultorios = Centir.data.getConsultoriosDisponibles(fecha, hora);
+    const selected     = this._selectedConsultorioReserva;
+
+    grid.innerHTML = consultorios.map(c => {
+      const isSelected = selected === c.nombre;
+      const isOcupado  = !c.disponible;
+      return `
+        <div class="psi-office-item${isOcupado ? ' psi-office-item--occupied' : ''}${isSelected ? ' selected' : ''}"
+             data-nombre="${c.nombre}"
+             ${c.disponible ? `onclick="Centir.viewPsicologa._selectConsultorioReserva('${c.nombre}')"` : ''}>
+          <div class="psi-office-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="1"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <span class="psi-office-name">${c.nombre}</span>
+          <div class="psi-office-status">
+            ${c.disponible
+              ? `<span class="psi-office-available">
+                   <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                   Disponible
+                 </span>`
+              : `<span class="psi-office-occupied">Ocupado</span>`}
+          </div>
+          ${isSelected ? `
+            <div class="psi-office-selected-badge">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>` : ''}
+        </div>`;
+    }).join('');
+  },
+
+  _submitConsultorio() {
+    const fecha      = document.getElementById('res-fecha')?.value      || '';
+    const hora       = document.getElementById('res-hora')?.value       || '';
+    const motivo     = document.getElementById('res-motivo')?.value.trim() || 'Reserva de consultorio';
+    const errorEl    = document.getElementById('res-error');
+
+    if (!fecha) {
+      this._showError(errorEl, 'La fecha es requerida.');
+      return;
+    }
+    if (!this._selectedConsultorioReserva) {
+      this._showError(errorEl, 'Selecciona un consultorio disponible.');
+      return;
+    }
+
+    Centir.data.createConsulta({
+      psicologaId: this._psicologaId,
+      paciente:    `— ${motivo} —`,
+      categoria:   'privado',
+      modalidad:   'presencial',
+      fecha,
+      hora,
+      valor:       0,
+      consultorio: this._selectedConsultorioReserva,
+      notas:       motivo,
+    });
+
+    this.closeModalConsultorio();
+
+    const fechaStr = new Date(fecha + 'T00:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long' });
+    this._showToast(
+      `${this._selectedConsultorioReserva} reservado el ${fechaStr} a las ${hora}`,
+      'success'
+    );
+    this.render();
+  },
+
   // ── Bind de eventos globales de modales ───────────────────────
   _bindModalEvents() {
     // Cerrar al hacer click en el overlay
@@ -783,6 +1004,7 @@ Centir.viewPsicologa = {
         if (e.key === 'Escape') {
           this.closeModalPaciente();
           this.closeModalCita();
+          this.closeModalConsultorio();
         }
       });
     }

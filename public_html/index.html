@@ -4,10 +4,242 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Centir · Centro de Psicología</title>
-  <!-- Redirige automáticamente al login -->
-  <meta http-equiv="refresh" content="0; url=auth/login.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:          #9cc3c0;
+      --primary-dark:     #7aaba8;
+      --primary-darker:   #5a8a87;
+      --primary-lighter:  #eef6f5;
+      --secondary:        #9787a3;
+      --secondary-dark:   #7a6b8a;
+      --secondary-lighter:#f0edf5;
+      --text:             #2c2c3d;
+      --text-medium:      #6e6e85;
+      --text-light:       #9e9eaf;
+      --border:           #e6e1ed;
+      --surface:          #ffffff;
+      --bg:               #f7f5fa;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+    }
+
+    .bg-blob-1 {
+      width: 600px; height: 600px;
+      background: var(--primary);
+      top: -200px; left: -150px;
+    }
+
+    .bg-blob-2 {
+      width: 500px; height: 500px;
+      background: var(--secondary);
+      bottom: -150px; right: -100px;
+    }
+
+    .bg-blob-3 {
+      width: 350px; height: 350px;
+      background: #c4a0b8;
+      top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 180px;
+      margin: 0 auto 12px;
+      display: block;
+    }
+
+    .tagline {
+      font-size: 0.9375rem;
+      color: var(--text-medium);
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .landing-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .landing-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-bottom: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 480px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 8px 28px rgba(151, 135, 163, 0.12);
+      padding: 32px 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .login-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(151, 135, 163, 0.22);
+    }
+
+    .login-card:active {
+      transform: translateY(-1px);
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon svg {
+      width: 26px; height: 26px;
+      stroke: white; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .card-icon--psi {
+      background: linear-gradient(135deg, var(--primary-darker), var(--primary));
+    }
+
+    .card-icon--admin {
+      background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+    }
+
+    .card-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.8125rem;
+      color: var(--text-medium);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .card-arrow {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .card--psi .card-arrow { color: var(--primary-darker); }
+    .card--admin .card-arrow { color: var(--secondary-dark); }
+
+    .footer {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+  </style>
 </head>
 <body>
-  <p>Redirigiendo a <a href="auth/login.html">inicio de sesión</a>...</p>
+
+  <div class="bg">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+  </div>
+
+  <div class="wrapper">
+
+    <img class="logo" src="assets/img/logo.svg" alt="Centir" />
+    <p class="tagline">Centro de Psicología</p>
+
+    <h1 class="landing-title">¿Cómo deseas ingresar?</h1>
+    <p class="landing-subtitle">Selecciona tu tipo de acceso para continuar</p>
+
+    <div class="cards">
+
+      <a class="login-card card--psi" href="auth/login-psicologa.html">
+        <div class="card-icon card-icon--psi">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <span class="card-label">Soy Psicóloga</span>
+        <span class="card-desc">Accede a tu agenda, pacientes y gestión de citas</span>
+        <span class="card-arrow">Entrar a mi agenda →</span>
+      </a>
+
+      <a class="login-card card--admin" href="auth/login.html">
+        <div class="card-icon card-icon--admin">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="card-label">Administración</span>
+        <span class="card-desc">Panel de administración del centro y equipo</span>
+        <span class="card-arrow">Ir al panel →</span>
+      </a>
+
+    </div>
+
+    <p class="footer">&copy; 2026 Centir · Centro de Psicología · v1.0</p>
+
+  </div>
+
 </body>
 </html>
