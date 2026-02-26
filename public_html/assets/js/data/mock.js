@@ -60,8 +60,8 @@ Centir.data = {
     {
       id: 5,
       nombre: 'Lucía Fernández Ruiz',
-      titulo: 'Neuropsicóloga',
-      especialidad: 'Evaluación y Seguimiento Neuropsicológico',
+      titulo: 'Psicóloga',
+      especialidad: 'Arte Terapia y Expresión Creativa',
       email: 'lucia.fernandez@centir.com',
       telefono: '+57 316 789 0123',
       color: '#c4b870',
